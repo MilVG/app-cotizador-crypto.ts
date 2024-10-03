@@ -1,7 +1,14 @@
+import { useEffect } from "react"
 import CriptoSearchForm from "./components/CriptoSearchForm"
+import { useCriptoStore } from "./store"
 
 function App() {
 
+  const fetchCryptos = useCriptoStore((state) => state.fetchCryptos)
+
+  useEffect(() => {
+    fetchCryptos()
+  }, [])
   return (
     <>
       <div className="container">
