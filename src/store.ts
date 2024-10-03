@@ -6,9 +6,13 @@ async function getCryptos() {
   const { data: { Data } } = await axios(url)
   const result = CryptoCurrenciesResponseSchema.safeParse(Data)
 
+  if (result.success) {
+    return result.data
+  }
+
 }
 export const useCriptoStore = create(() => ({
-  fetchCryptos: () => {
-    getCryptos()
+  fetchCryptos: async () => {
+    const cryptocurrencies = await getCryptos()
   }
 }))
